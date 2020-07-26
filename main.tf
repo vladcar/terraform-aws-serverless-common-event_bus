@@ -1,6 +1,15 @@
 
 resource "aws_sqs_queue" "queue" {
   name = var.queue
+
+  redrive_policy = jsonencode({
+    deadLetterTargetArn = aws_sqs_queue.dead_letter_queue.arn
+    maxReceiveCount     = var.dlq_max_receive_count
+  })
+}
+
+resource "aws_sqs_queue" "dead_letter_queue" {
+  name = "${var.queue}-dlq"
 }
 
 resource "aws_sns_topic_subscription" "event_subscription" {
