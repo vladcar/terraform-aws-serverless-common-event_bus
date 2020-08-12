@@ -9,6 +9,11 @@ variable "sns_topic" {
   description = "sns topic arn"
 }
 
+variable "raw_message_delivery" {
+  type    = bool
+  default = true
+}
+
 variable "dlq_max_receive_count" {
   type    = number
   default = 1

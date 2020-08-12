@@ -13,9 +13,10 @@ resource "aws_sqs_queue" "dead_letter_queue" {
 }
 
 resource "aws_sns_topic_subscription" "event_subscription" {
-  topic_arn = var.sns_topic
-  protocol  = "sqs"
-  endpoint  = aws_sqs_queue.queue.arn
+  topic_arn            = var.sns_topic
+  protocol             = "sqs"
+  endpoint             = aws_sqs_queue.queue.arn
+  raw_message_delivery = var.raw_message_delivery
 }
 
 resource "aws_sqs_queue_policy" "queue_policy" {
