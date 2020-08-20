@@ -11,7 +11,7 @@ resource "aws_sqs_queue" "queue" {
 }
 
 resource "aws_sqs_queue" "dead_letter_queue" {
-  name = "${var.queue}-dlq"
+  name = replace("${var.queue}-dlq", "/[.]/", "" )
 }
 
 resource "aws_sns_topic_subscription" "event_subscription" {
