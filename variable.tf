@@ -18,3 +18,13 @@ variable "dlq_max_receive_count" {
   type    = number
   default = 1
 }
+
+variable "fifo_queue" {
+  type    = bool
+  default = false
+}
+
+variable "content_based_deduplication" {
+  type    = bool
+  default = false
+}

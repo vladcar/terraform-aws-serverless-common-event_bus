@@ -1,6 +1,8 @@
 
 resource "aws_sqs_queue" "queue" {
-  name = var.queue
+  name                        = var.queue
+  fifo_queue                  = var.fifo_queue
+  content_based_deduplication = var.content_based_deduplication
 
   redrive_policy = jsonencode({
     deadLetterTargetArn = aws_sqs_queue.dead_letter_queue.arn
